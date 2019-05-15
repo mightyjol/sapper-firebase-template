@@ -1,0 +1,14 @@
+node_modules
+__sapper__/dev
+cypress
+src
+README.md
+rollup.config.js
+yarn.lock
+yarn-error.log
+now.json
+.nowignore
+appveyor.yml
+cypress.json
+.git
+.gitignore
