@@ -37,10 +37,4 @@
 </svelte:head>
 
 <h1>Great success!</h1>
-
-<figure>
-	<img alt='Borat' src='great-success.png'>
-	<figcaption>HIGH FIVE!</figcaption>
-</figure>
-
-<p><strong>Try qsqsdddddddf</strong></p>
+<p><strong>Sapper + bulma css + now2 deployment</strong></p>
