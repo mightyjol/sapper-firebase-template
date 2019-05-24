@@ -19,4 +19,3 @@ TODO Signin
 if admin => show rdv
 if user show homepage
 </pre>
-
