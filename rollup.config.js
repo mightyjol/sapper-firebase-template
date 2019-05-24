@@ -4,6 +4,8 @@ import commonjs from 'rollup-plugin-commonjs';
 import json from 'rollup-plugin-json';
 import svelte from 'rollup-plugin-svelte';
 import babel from 'rollup-plugin-babel';
+import builtins from 'rollup-plugin-node-builtins';
+import globals from 'rollup-plugin-node-globals';
 import { terser } from 'rollup-plugin-terser';
 import config from 'sapper/config/rollup.js';
 import pkg from './package.json';
@@ -51,7 +53,7 @@ export default {
 			!dev && terser({
 				module: true
 			})
-		],
+		]
 	},
 
 	server: {
@@ -70,9 +72,9 @@ export default {
 			resolve(),
 			commonjs()
 		],
-		external: [].concat(
-			require('module').builtinModules || Object.keys(process.binding('natives'))
-		),
+		external: Object.keys(pkg.dependencies).concat(
+	      	require('module').builtinModules || Object.keys(process.binding('natives')),
+	    )
 	},
 
 	serviceworker: {
