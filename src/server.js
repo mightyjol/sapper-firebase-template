@@ -10,7 +10,11 @@ const app = polka() // You can also use Express
 	.use(
 		compression({ threshold: 0 }),
 		sirv('static', { dev }),
-		sapper.middleware()
+		sapper.middleware({
+			session: (req, res) => ({
+				user: req.user
+			})
+		})
 	);
 
 export default app.handler // Remove .handler when using Express
