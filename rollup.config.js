@@ -26,7 +26,7 @@ export default {
 				dev,
 				hydratable: true,
 				css: function (css) {
-			        css.write('static/main.css');
+			        css.write('static/css/generated/main.css');
 		      	}
 			}),
 			globals(),
