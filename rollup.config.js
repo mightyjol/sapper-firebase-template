@@ -4,6 +4,7 @@ import commonjs from 'rollup-plugin-commonjs';
 import json from 'rollup-plugin-json';
 import svelte from 'rollup-plugin-svelte';
 import babel from 'rollup-plugin-babel';
+import globals from 'rollup-plugin-node-globals';
 import { terser } from 'rollup-plugin-terser';
 import config from 'sapper/config/rollup.js';
 import pkg from './package.json';
@@ -25,9 +26,10 @@ export default {
 				dev,
 				hydratable: true,
 				css: function (css) {
-			        css.write('public/main.css');
+			        css.write('static/main.css');
 		      	}
 			}),
+			globals(),
 			resolve(),
 			commonjs(),
 

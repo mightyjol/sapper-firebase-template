@@ -1,0 +1,30 @@
+{
+    "functions": {
+        "predeploy": [
+            "node predeploy.js"
+        ],
+        "source": "functions"
+    },
+    "firestore": {
+        "rules": "config/firestore.rules",
+        "indexes": "config/firestore.indexes.json"
+    },
+    "hosting": {
+        "public": "static",
+        "ignore": [
+            "firebase.json",
+            "**/.*",
+            "**/node_modules/**",
+            "./__sapper__",
+            "./cypress",
+            "./src"
+        ],
+        "rewrites": [{
+            "source": "**",
+            "function": "ssr"
+        }]
+    },
+    "storage": {
+        "rules": "config/storage.rules"
+    }
+}

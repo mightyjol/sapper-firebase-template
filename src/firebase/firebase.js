@@ -1,27 +1,19 @@
-import config from '../config/firebase.js'
- 
-import firebase from 'firebase/app'
-import 'firebase/auth'
-import 'firebase/firestore'
+import auth from './auth.js'
 
-let app = firebase.initializeApp(config)
-
-export const userKey = {};
-export const auth = app.auth()
-export const db = app.firestore()
-
-export const login = (email, password) => {
+export const loginWithEmail = async (email, password) => {
     console.log('logging in under ', email, password);
-	return auth.signInWithEmailAndPassword(email, password)
-    .then(data => console.log('finished logging in:', data))
+
+	let promise = auth.signInWithEmailAndPassword(email, password)
+
+	promise
+	.then(data => console.log('finished logging in:', data))
     .catch(e => console.error(e))
+   
+	return promise;
 }
 
-export const loginTest = () => {
-    return login('test@test.com', 'testing')
+export const logout = () => {
+    console.log('logging out');
+	return auth.signOut();
 }
 
-export const signup = (email, password) => {
-	//TODO call to server
-	return auth.createUserWithEmailAndPassword(email, password)
-}

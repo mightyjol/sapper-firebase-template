@@ -1,17 +1,40 @@
 <script>
-	import user from '../firebase/user.js';
-	import LoginButton from '../components/auth/LoginButton.svelte';
-	import LogoutButton from '../components/auth/LogoutButton.svelte';
+	import { stores } from "@sapper/app"
+	import { onMount } from "svelte"
+
+	const { session } = stores()
+	$:user = $session.user
+
+	let client;
+
+	onMount(async () => {
+		if(process.browser){
+			client = await import("../firebase/firebase.js") 
+			console.error(client)
+		}
+	})
+	
+	function login(){
+		console.error(client)
+		client.loginWithEmail('test@test.com', 'testing').then((u) => {
+			console.error('logged', $session.user)
+		})
+	}
+
+	function logoutNow(){
+		client.logout().then(() => {
+			console.error('logged out')
+		});		 
+	}
 </script>
 
-<svelte:head>
-	<title>doctor - home</title>
-</svelte:head>
-
 <h1>Home</h1>
-{#if $user}
-	logged as : {$user.uid}
-	<LogoutButton />
+<button on:click="{login}" class="button">Login</button>
+
+{#if user}
+	You are logged in as : {user.uid}
+	<br>
+	<button on:click="{logoutNow}" class="button">Logout</button>
 {:else}
-	<LoginButton />
+	You are not logged in
 {/if}

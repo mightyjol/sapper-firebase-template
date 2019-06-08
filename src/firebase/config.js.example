@@ -1,0 +1,10 @@
+//get this from your firebase project console (client-side init config)
+export default {
+	apiKey: "",
+    authDomain: "",
+    databaseURL: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: "",
+    appId: ""
+};

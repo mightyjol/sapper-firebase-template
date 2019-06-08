@@ -1,27 +1,39 @@
+import express from 'express';
 import sirv from 'sirv';
-import polka from 'polka';
-import compression from 'compression';
+//import { v4 as uuid } from 'uuid';
+import session from 'express-session';
+import bodyParser from 'body-parser';
+
+import admin from './firebase/admin.js';
 import * as sapper from '@sapper/server';
 
 const { PORT, NODE_ENV } = process.env;
 const dev = NODE_ENV === 'development';
 
-const app = polka() // You can also use Express
-	.use(
-		compression({ threshold: 0 }),
-		sirv('static', { dev }),
-		sapper.middleware({
-			session: (req, res) => ({
-				user: req.user
-			})
-		})
-	);
+const server = express(); // You can also use Express
 
-export default app.handler // Remove .handler when using Express
+if(dev) server.use(sirv('static', { dev }));
 
-if (!process.env.NOW_REGION) {
-	app.listen(PORT, err => {
-		if (err) console.log('error', err)
+server.use(
+	//compression({ threshold: 0 }),
+	bodyParser.json(),
+	session({
+		secret: 'test',
+		resave: false,
+		saveUninitialized: false
+	}),
+	sapper.middleware({
+		session: (req, res) => {
+			return {}
+		}
 	})
+);
+
+if(dev){
+	// only listen when started in dev
+	server.listen(PORT, err => {
+	    if (err) console.log('error', err);
+	});
 }
-	
+
+export { server };
