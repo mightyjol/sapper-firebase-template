@@ -12,8 +12,8 @@ npm run install
 cd functions && npm install
 ```
 
-update all .example files from config folder with your firebase credentials then remove .example extension
-update src/firebase.config.example with your client firebase credentials then remove .example extension
+Update all `.example` files from the config folder with your firebase credentials, then remove the `.example` extension. Next, 
+update `src/firebase.config.example` with your client firebase credentials and then remove the `.example` extension.
 
 ```bash
 yarn dev
