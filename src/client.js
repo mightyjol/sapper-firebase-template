@@ -1,4 +1,3 @@
-import 'bulma/css/bulma.css';
 import * as sapper from '@sapper/app';
 
 sapper.start({
