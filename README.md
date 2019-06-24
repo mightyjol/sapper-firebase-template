@@ -8,7 +8,7 @@ This is a blank project for sapper to be deployed on firebase
 # Get started
 
 ```bash
-npm run install
+npm install
 cd functions && npm install
 ```
 
